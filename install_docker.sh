@@ -40,6 +40,7 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io -y
 
 # append (-a) user to docker usergroup (-G docker) 
 # allows interacting with docker in non-sudo mode
+sudo groupadd docker
 sudo usermod -aG docker $USER
 
 # install docker compose
@@ -47,13 +48,13 @@ sudo usermod -aG docker $USER
 # make the binary executable
 # make a symbolic link to executable binary in /usr/bin/docker-compose allowing it to be run from anywhere
 sudo curl -L \
-"https://github.com/docker/compose/releases/download/1.29.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+"https://github.com/docker/compose/releases/download/latest/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 
 # start the container
 sudo service docker start
 
+
 # check
 docker run hello-world
-
